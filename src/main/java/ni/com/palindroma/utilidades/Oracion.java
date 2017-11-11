@@ -1,45 +1,13 @@
 package ni.com.palindroma.utilidades;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
+
 public class Oracion {
-    public String palabraEnviada;
-    public boolean palabraPolindroma = false;
-    public String sCadenaInvertida;
-    public String getPalabraEnviada() {
-        return palabraEnviada;
-    }
-    public void setPalabraEnviada(String palabraEnviada) {
-        this.palabraEnviada = palabraEnviada;
-    }
-    public String getSCadenaInvertida() {
-        return sCadenaInvertida;
-    }
-    public void setSCadenaInvertida(String sCadenaInvertida) {
-        this.sCadenaInvertida = sCadenaInvertida;
-    }
-    public boolean getPalabraPolindroma() {
-        return palabraPolindroma;
-    }
-    public void setPalabraPolindroma(boolean palabraPolindroma) {
-        this.palabraPolindroma = palabraPolindroma;
-    }
-
-    public String averiguaTipoOracion() {
-        this.retornaReverso();
-        if(!(this.palabraEnviada== this.sCadenaInvertida)){
-            return "La palabra " + this.palabraEnviada + ", es una PALABRA POLINDROMA.......";
-        }else{
-            return "La palabra " + this.palabraEnviada + ",no es políndroma......." ;
-        }
-    }
-
-    public void MensajeResultado(){
-        if(this.palabraPolindroma) {
-            System.out.println("La palabra " + this.palabraEnviada + ", es una POLINDROMA.......");
-        }
-        else {
-            System.out.println("La palabra " + this.palabraEnviada + ",no es políndroma......." );
-        }
-    }
+    private @Getter @Setter String palabraEnviada;
+    private @Getter @Setter boolean palabraPolindroma = false;
+    private @Getter @Setter String sCadenaInvertida;
 
 
     public String getResultado(){
@@ -72,4 +40,16 @@ public class Oracion {
         String sCadenaTemporal = this.sCadenaInvertida.replace(" ","");
         this.sCadenaInvertida=sCadenaTemporal.toLowerCase();
     }
+
+    public static boolean esSi(boolean variable){
+        return variable==true;
+    }
+
+    public static boolean esPalindrama(String cadenaTexto){
+        String cadenaInvertida= StringUtils.reverse(cadenaTexto);
+        cadenaInvertida = StringUtils.upperCase(cadenaInvertida).replaceAll(" ","");
+        cadenaTexto = StringUtils.upperCase(cadenaTexto).replaceAll(" ","");
+        return StringUtils.equals(cadenaInvertida,cadenaTexto);
+    }
+
 }
